@@ -11,11 +11,12 @@ use Response;
 
 class APIRegisterController extends Controller
 {
-    public function register(Request $request)
+    public function register(Request $request,$type)
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255|unique:users',
             'name' => 'required',
+            'phone'=> 'required|unique:users',
             'password'=> 'required'
         ]);
         if ($validator->fails()) {
@@ -24,6 +25,8 @@ class APIRegisterController extends Controller
         User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
+            'phone'=> $request->get('phone'),
+            'type'=>$type,
             'password' => bcrypt($request->get('password')),
         ]);
         $user = User::first();

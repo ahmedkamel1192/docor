@@ -16,5 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('user/register', 'APIRegisterController@register');
+Route::post('user/register/{type}', 'APIRegisterController@register');
+//Route::post('doctor/register', 'APIRegisterController@register');
 Route::post('user/login', 'APILoginController@login');
+Route::post('addToFavourite','ADDToFavouriteController@add_to_favourite');

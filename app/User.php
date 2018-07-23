@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','phone','type'
     ];
 
     /**
@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function doctors()
+    {
+        return $this->belongsToMany('\App\User', 'doctor_user', 'user_id', 'doctor_id');
+    }
+    public function has_same_doctor($doctor_id)
+    {
+        return $this->doctors()->where('doctor_id', $doctor_id)->exists();
+    }
 }

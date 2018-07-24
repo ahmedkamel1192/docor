@@ -1,1 +1,1 @@
-# docor
+# doctor

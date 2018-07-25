@@ -26,6 +26,7 @@ class APIRegisterController extends Controller
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'phone'=> $request->get('phone'),
+            'category_id'=>$request->get('category_id'),
             'type'=>$type,
             'password' => bcrypt($request->get('password')),
         ]);

@@ -20,3 +20,5 @@ Route::post('user/register/{type}', 'APIRegisterController@register');
 //Route::post('doctor/register', 'APIRegisterController@register');
 Route::post('user/login', 'APILoginController@login');
 Route::post('addToFavourite','ADDToFavouriteController@add_to_favourite');
+Route::get('categories','CategoriesController@index');
+Route::get('categories/{id}','CategoriesController@getDoctorsByCategory');

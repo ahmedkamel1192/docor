@@ -10,8 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-header('Access-Control-Allow-Origin: *');
 
 Route::get('/', function () {
+    header('Access-Control-Allow-Origin: *');
+
     return view('welcome');
 });

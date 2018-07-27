@@ -9,7 +9,8 @@ class ADDToFavouriteController extends Controller
     public function add_to_favourite(Request $request)
     {
 
-          $current_user = User::find(1);
+          $current_user = auth()->user();
+          return $current_user;
 
          if (!$current_user->has_same_doctor($request->get('doctor_id')))
         {

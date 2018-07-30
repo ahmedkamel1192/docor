@@ -20,8 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique();
             $table->string('type');
             $table->integer('category_id');
-            $table->float('latitude')->default(0.0);
-            $table->float('longitude')->default(0.0);
+            $table->double('latitude')->default(0.0);
+            $table->double('longitude')->default(0.0);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

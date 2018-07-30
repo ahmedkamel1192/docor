@@ -147,6 +147,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
+        Bodunde\GoogleGeocoder\GeocoderServiceProvider::class,
 
         /*
          * Package Service Providers...

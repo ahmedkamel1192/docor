@@ -28,5 +28,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::get('categories','CategoriesController@index');
     Route::get('categories/{id}','CategoriesController@getDoctorsByCategory');
     Route::post('updatelocation','LocationController@updateLocation');
+    Route::post('getNearestDoctors','LocationController@getNearestDoctors');
+
 });
 

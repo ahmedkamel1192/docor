@@ -27,5 +27,6 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('addToFavourite','ADDToFavouriteController@add_to_favourite');
     Route::get('categories','CategoriesController@index');
     Route::get('categories/{id}','CategoriesController@getDoctorsByCategory');
+    Route::post('updatelocation','LocationController@updateLocation');
 });
 

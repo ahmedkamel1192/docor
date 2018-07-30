@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','phone','type','category_id'
+        'name', 'email', 'password','phone','type','category_id','logitude','latitude'
     ];
 
     /**
@@ -35,6 +35,7 @@ class User extends Authenticatable
     {
         return $this->doctors()->where('doctor_id', $doctor_id)->exists();
     }
-//   m
+  // relation with location
+
 
 }

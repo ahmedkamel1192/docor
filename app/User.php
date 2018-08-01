@@ -35,7 +35,11 @@ class User extends Authenticatable
     {
         return $this->doctors()->where('doctor_id', $doctor_id)->exists();
     }
-  // relation with location
 
+    public function rating()
+    {
+        return $this->belongsToMany('\App\User', 'rating', 'user_id', 'doctor_id')->withPivot('rate');
+
+    }
 
 }

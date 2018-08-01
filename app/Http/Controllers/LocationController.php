@@ -18,7 +18,24 @@ class LocationController extends Controller
 
 
     }
-    public function calcDistance($src_lat,$src_lng,$doc_lat,$doc_lng) {
+
+    public function getNearestDoctorsWithCategory()
+    {
+
+        $doctors = User::where('type','doctor')->where('category_id',request('category_id'))->get();
+        $array_of_doctors=[];
+        if( $doctors->count() >0) {
+            foreach ($doctors as $doctor) {
+                $array_of_doctors[$doctor->id] = $this->calcDistance(request('src_lat'), request('src_lng'), $doctor->latitude, $doctor->longitude);
+            }
+            //dd($array_of_doctors);
+            $id_of_nearst_doctor = array_keys($array_of_doctors, min($array_of_doctors))[0];
+            $nearst_doctor = User::find($id_of_nearst_doctor);
+
+            return ($nearst_doctor);
+        }else{ return 'there are no doctor for your request';}
+    }
+    private function calcDistance($src_lat,$src_lng,$doc_lat,$doc_lng) {
 
         $geocoder = new Geocoder;
 
@@ -34,20 +51,5 @@ class LocationController extends Controller
         $distance = $geocoder->getDistanceBetween($location1, $location2);
         return ($distance);
 
-    }
-    public function getNearestDoctors()
-    {
-
-        $doctors = User::where('type','doctor')->get();
-        $array_of_doctors=[];
-        foreach ($doctors as $doctor)
-        {
-            $array_of_doctors[$doctor->id]=$this->calcDistance(request('src_lat'),request('src_lng'),$doctor->latitude,$doctor->longitude);
-        }
-        //dd($array_of_doctors);
-        $id_of_nearst_doctor = array_keys($array_of_doctors, min($array_of_doctors))[0];
-        $nearst_doctor=User::find($id_of_nearst_doctor);
-
-        return ($nearst_doctor);
     }
 }

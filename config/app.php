@@ -148,6 +148,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
         Bodunde\GoogleGeocoder\GeocoderServiceProvider::class,
+        'Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider',
+
 
         /*
          * Package Service Providers...
@@ -212,6 +214,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'JWTAuth' => 'Tymon\JWTAuth\Facades\JWTAuth',
         'JWTFactory' => 'Tymon\JWTAuth\Facades\JWTFactory',
-    ],
+        'PushNotification' => 'Davibennun\LaravelPushNotification\Facades\PushNotification',
+
+],
 
 ];

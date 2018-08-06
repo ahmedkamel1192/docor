@@ -34,5 +34,8 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 
 
 
+
 });
+Route::post('notify','NotificationController@sendNotification');
+
 

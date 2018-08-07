@@ -9,8 +9,8 @@ return array(
         'service'     =>'apns'
     ),
     'superDoctorAndroid' => array(
-        'environment' =>'production',
-        'apiKey'      =>'AIzaSyAtkZKmCejTVFExUU_1GEMVBK5T7qM8DbQ',
+        'environment' =>'development',
+        'apiKey'      =>'AIzaSyCbUVCjJ5jfoLH-BxCvwoisdYL2YRMkTf4',
         'service'     =>'gcm'
     )
 

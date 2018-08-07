@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+//use Davibennun\LaravelPushNotification\PushNotification;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller
@@ -9,8 +9,10 @@ class NotificationController extends Controller
 
      public function sendNotification()
      {
-         PushNotification::app('superDoctorAndroid')
-             ->to(request('deviceToken'))
+         $device_token = request('deviceToken');
+
+         \PushNotification::app('superDoctorAndroid')
+             ->to($device_token)
              ->send('Hello World, i`m a push message');
      }
 }

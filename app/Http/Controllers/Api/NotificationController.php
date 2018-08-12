@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;
+
 //use Davibennun\LaravelPushNotification\PushNotification;
 use Illuminate\Http\Request;
 

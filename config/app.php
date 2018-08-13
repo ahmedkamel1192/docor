@@ -149,6 +149,9 @@ return [
         'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
         Bodunde\GoogleGeocoder\GeocoderServiceProvider::class,
         'Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider',
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Yajra\DataTables\ButtonsServiceProvider::class,
+
 
 
         /*

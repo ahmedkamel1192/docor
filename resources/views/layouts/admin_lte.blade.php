@@ -251,6 +251,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <section class="content">
 
             <!-- Your Page Content Here -->
+            @yield('content')
 
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->
@@ -276,6 +277,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience -->
+<!-- added to help me in backend table -->
+<link rel="stylesheet" href="{{asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+
+<script src="{{asset('bower_components/admin-lte/dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
+<script src="/vendor/datatables/buttons.server-side.js"></script>
+<!--  end added to help me in backend table -->
+
+
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
+@stack('js')
 
 </body>
 </html>

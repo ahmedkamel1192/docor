@@ -20,7 +20,7 @@ class APIRegisterController extends Controller
             'password'=> 'required'
         ]);
         if ($validator->fails()) {
-            return response()->json($validator->errors());
+            return response()->json(['errors'=>$validator->errors()]);
         }
       $user =  User::create([
             'name' => $request->get('name'),

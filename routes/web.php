@@ -20,6 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::group(['middleware' => ['checkIfAdmin']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/categories', 'CategoriesController@index');
+
 
 });
 

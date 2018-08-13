@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->string('type');
-            $table->integer('category_id');
+            $table->integer('category_id')->default(0);
             $table->double('latitude')->default(0.0);
             $table->double('longitude')->default(0.0);
             $table->string('password');

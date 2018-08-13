@@ -1,1 +1,2 @@
-<button class="delete btn btn-danger" id={{$id}}><i class="fa fa-trash"></i></button>
+<a href ="{{ url('rooms/'.$id.'/edit') }}" class="btn btn-info"><i class="fa fa-edit"></i></a>
+<button class="delete btn btn-danger" ><i class="fa fa-trash"></i></button>

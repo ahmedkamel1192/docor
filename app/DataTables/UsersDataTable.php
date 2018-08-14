@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Category;
+use App\User;
 use Yajra\DataTables\Services\DataTable;
 
-class CategoriesDataTable extends DataTable
+class UsersDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -16,7 +16,7 @@ class CategoriesDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('action', 'categories.action');
+            ->addColumn('action', 'Users.action');
     }
 
     /**
@@ -25,9 +25,9 @@ class CategoriesDataTable extends DataTable
      * @param \App\User $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query()
+    public function query(User $model)
     {
-        return Category::all();
+        return User::where('type','=','user');
     }
 
     /**
@@ -56,6 +56,7 @@ class CategoriesDataTable extends DataTable
             ]);
     }
 
+
     /**
      * Get columns.
      *
@@ -63,20 +64,33 @@ class CategoriesDataTable extends DataTable
      */
     protected function getColumns()
     {
+
         return [
             [
                 'name' => 'id',
                 'data' => 'id',
                 'title' => 'ID'
             ],
-
+            [
+                'name' => 'email',
+                'data' => 'email',
+                'title' => 'Email'
+            ],
             [
                 'name' => 'name',
                 'data' => 'name',
                 'title' => 'Name'
             ],
-
-
+            [
+                'name' => 'phone',
+                'data' => 'phone',
+                'title' => 'PHONE'
+            ],
+            [
+                'name' => 'created_at',
+                'data' => 'created_at',
+                'title' => 'Created_At'
+            ],
             [
                 'name' => 'action',
                 'data' => 'action',
@@ -93,6 +107,6 @@ class CategoriesDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Categories_' . date('YmdHis');
+        return 'Users_' . date('YmdHis');
     }
 }

@@ -6,7 +6,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>SUPER DOCTOR</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
     <link href="{{ asset("/bower_components/bootstrap/dist/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
@@ -40,7 +40,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="index2.html" class="logo"><b>Admin</b>LTE</a>
+        <a href="/doctors" class="logo"><b>Super</b>DOCTOR</a>
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -148,7 +148,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             <!-- The user image in the navbar-->
                             <img src="{{ asset("/bower_components/admin-lte/dist/img/user2-160x160.jpg") }}" class="user-image" alt="User Image"/>
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs"><?php echo Auth()->user()->name; ?> </span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -198,7 +198,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <img src="{{ asset("/bower_components/admin-lte/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image" />
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
+                    <p><?php echo Auth()->user()->name; ?> </p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -219,8 +219,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">HEADER</li>
                 <!-- Optionally, you can add icons to the links -->
-                <li class="active"><a href="#"><span>Link</span></a></li>
-                <li><a href="#"><span>Another Link</span></a></li>
+                <li class="active"><a href="/doctors"><span>Manage Doctors</span></a></li>
+                <li><a href="/users"><span>Manager Users</span></a></li>
+                <li><a href="/categories"><span>Manager Categories</span></a></li>
+
                 <li class="treeview">
                     <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
@@ -238,8 +240,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Page Header
-                <small>Optional description</small>
+<?php
+                if( $_SERVER["REQUEST_URI"] == "/doctors")
+                {echo "Manage Doctors Page";}
+                else if( $_SERVER["REQUEST_URI"] == "/users")
+                {echo "Manage Users Page";}
+                else if( $_SERVER["REQUEST_URI"] == "/categories")
+                {echo "Manage Categories Page";}
+                ?>
+    <small>Optional description</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>

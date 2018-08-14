@@ -21,6 +21,8 @@ Auth::routes();
 Route::group(['middleware' => ['checkIfAdmin']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/categories', 'CategoriesController@index');
+    Route::get('/doctors', 'DoctorsController@index');
+    Route::get('/users', 'UsersController@index');
 
 
 });

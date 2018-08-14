@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\Category;
+use App\User;
 use Yajra\DataTables\Services\DataTable;
 
-class CategoriesDataTable extends DataTable
+class DoctorsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -16,7 +16,7 @@ class CategoriesDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('action', 'categories.action');
+            ->addColumn('action', 'Doctors.action');
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoriesDataTable extends DataTable
      */
     public function query()
     {
-        return Category::all();
+        return User::where('type','=','doctor');
     }
 
     /**
@@ -69,14 +69,26 @@ class CategoriesDataTable extends DataTable
                 'data' => 'id',
                 'title' => 'ID'
             ],
-
+            [
+                'name' => 'email',
+                'data' => 'email',
+                'title' => 'Email'
+            ],
             [
                 'name' => 'name',
                 'data' => 'name',
                 'title' => 'Name'
             ],
-
-
+            [
+                'name' => 'phone',
+                'data' => 'phone',
+                'title' => 'PHONE'
+            ],
+            [
+                'name' => 'created_at',
+                'data' => 'created_at',
+                'title' => 'Created_At'
+            ],
             [
                 'name' => 'action',
                 'data' => 'action',
@@ -93,6 +105,6 @@ class CategoriesDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Categories_' . date('YmdHis');
+        return 'Doctors_' . date('YmdHis');
     }
 }

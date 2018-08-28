@@ -31,7 +31,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('getNearestDoctorsWithCategory','Api\LocationController@getNearestDoctorsWithCategory');
     Route::post('Rate','Api\RatesController@addRate');
     Route::post('getTotalRate','Api\RatesController@getTotalRate');
-
+    Route::post('setDeviceToken','Api\UsersController@setDeviceToken');
 
 
 

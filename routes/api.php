@@ -23,7 +23,7 @@ Route::post('user/register/{type}', 'Api\APIRegisterController@register');
 //Route::post('doctor/register', 'APIRegisterController@register');
 Route::post('user/login', 'Api\APILoginController@login');
 
-Route::group(['middleware' => ['jwt.auth','allow_origin']], function () {
+Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('addToFavourite','Api\ADDToFavouriteController@add_to_favourite');
     Route::get('categories','Api\CategoriesController@index');
     Route::get('categories/{id}','Api\CategoriesController@getDoctorsByCategory');
@@ -31,7 +31,7 @@ Route::group(['middleware' => ['jwt.auth','allow_origin']], function () {
     Route::post('getNearestDoctorsWithCategory','Api\LocationController@getNearestDoctorsWithCategory');
     Route::post('Rate','Api\RatesController@addRate');
     Route::post('getTotalRate','Api\RatesController@getTotalRate');
-    Route::post('setDeviceToken','Api\UsersController@setDeviceToken');
+    Route::post('setDeviceToken','Api\UsersController@setDeviceToken')->middleware('allow_origin');
 
 
 

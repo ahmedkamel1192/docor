@@ -14,6 +14,9 @@ class UsersController extends Controller
         $current_user = auth()->user();
         $current_user->device_token = request('device_token');
         $current_user->save();
+        return response()->json(['message' => 'deviceToken is saved successfully'], 200);
+
+
     }
    
 }

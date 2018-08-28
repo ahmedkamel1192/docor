@@ -12,7 +12,7 @@ class ADDToFavouriteController extends Controller
     {
 
           $current_user = auth()->user();
-          return $current_user;
+        //  return $current_user;
 
          if (!$current_user->has_same_doctor($request->get('doctor_id')))
         {
@@ -21,6 +21,14 @@ class ADDToFavouriteController extends Controller
             return response()->json(['message'=>' added to favourite successfully','all_favourite'=>$current_user->doctors()->get()]);
         }else
              return response()->json(['messgae'=>'you have already added this doctor to favourite']);
+    }
+    public function favourites()
+    {
+        $current_user = auth()->user();
+       $favourites =  $current_user->doctors();
+       return response()->json(['favourites doctors' => $favourites], 200);
+
+
     }
 
 }

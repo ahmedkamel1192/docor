@@ -16,7 +16,7 @@ class LocationController extends Controller
         $current_user->longitude=request('longitude');
         $current_user->latitude=request('latitude');
         $current_user->save();
-        $this->calcDistance(1.555,5.3333,9.5555,120.222);
+       // $this->calcDistance(1.555,5.3333,9.5555,120.222);
 
 
     }
@@ -24,18 +24,34 @@ class LocationController extends Controller
     public function getNearestDoctorsWithCategory()
     {
 
-        $doctors = User::where('type','doctor')->where('category_id',request('category_id'))->get();
+        $doctors = User::allVerifiedAndNonBlockedDoctors();
         $array_of_doctors=[];
         if( $doctors->count() >0) {
             foreach ($doctors as $doctor) {
                 $array_of_doctors[$doctor->id] = $this->calcDistance(request('src_lat'), request('src_lng'), $doctor->latitude, $doctor->longitude);
             }
             //dd($array_of_doctors);
-            $id_of_nearst_doctor = array_keys($array_of_doctors, min($array_of_doctors))[0];
-            $nearst_doctor = User::find($id_of_nearst_doctor);
+            asort($array_of_doctors);
+           // print_r($array_of_doctors);
+          //  print_r(array_keys($array_of_doctors));
+            $ids_of_nearest_doctors = array_keys($array_of_doctors);
+           // print_r($ids_of_nearest_doctors);
+           // print_r(array_keys($ids_of_nearest_doctors));
+            $nearest_five_doctors_ids= array_slice($ids_of_nearest_doctors,0,3);
+            //print_r($nearest_five_doctors);
+            $nearst_doctors=[];
+            foreach ($nearest_five_doctors_ids as $doctor_id)
+            {
+                $nearst_doctors[] = User::find($doctor_id);
+            }
 
-            return ($nearst_doctor);
-        }else{ return 'there are no doctor for your request';}
+           // $id_of_nearst_doctor = array_keys($array_of_doctors, min($array_of_doctors))[0];
+           // $nearst_doctor = User::find($id_of_nearst_doctor);
+
+           // return ($nearst_doctors);
+            return response()->json(['message'=>'true','data' => $nearst_doctors], 200);
+
+        }else{ return response()->json(['message'=>'false','data'=>'there are no result'], 404);}
     }
     private function calcDistance($src_lat,$src_lng,$doc_lat,$doc_lng) {
 

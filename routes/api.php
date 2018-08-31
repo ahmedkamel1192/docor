@@ -25,6 +25,8 @@ Route::post('user/login', 'Api\APILoginController@login');
 
 Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('addToFavourite','Api\ADDToFavouriteController@add_to_favourite');
+    Route::get('favouriteDoctors','Api\ADDToFavouriteController@favourites');
+
     Route::get('categories','Api\CategoriesController@index');
     Route::get('categories/{id}','Api\CategoriesController@getDoctorsByCategory');
     Route::post('updatelocation','Api\LocationController@updateLocation');
@@ -32,7 +34,9 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('Rate','Api\RatesController@addRate');
     Route::post('getTotalRate','Api\RatesController@getTotalRate');
     Route::post('setDeviceToken','Api\UsersController@setDeviceToken');
+    Route::post('allVerifiedAndNonBlockedDoctors','Api\UsersController@allVerifiedAndNonBlockedDoctors');
 
+    Route::post('beOnLine','Api\UsersController@beOnLine');
 
 
 });

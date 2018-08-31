@@ -18,15 +18,15 @@ class ADDToFavouriteController extends Controller
         {
             $current_user->doctors()->attach($request->get('doctor_id'));   // add friend
 
-            return response()->json(['message'=>' added to favourite successfully','all_favourite'=>$current_user->doctors()->get()]);
+            return response()->json(['message'=>'true'],200);
         }else
-             return response()->json(['messgae'=>'you have already added this doctor to favourite']);
+             return response()->json(['messgae'=>'false']);
     }
     public function favourites()
     {
         $current_user = auth()->user();
-       $favourites =  $current_user->doctors();
-       return response()->json(['favourites doctors' => $favourites], 200);
+       $favourites =  $current_user->doctors;
+       return response()->json(['message'=>'true','data' => $favourites], 200);
 
 
     }

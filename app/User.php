@@ -41,5 +41,11 @@ class User extends Authenticatable
         return $this->belongsToMany('\App\User', 'rating', 'user_id', 'doctor_id')->withPivot('rate');
 
     }
+    static function allVerifiedAndNonBlockedDoctors()
+    {
+        # code...
+        return User::where([['type','=','doctor'],['category_id','=',request('category_id')],['is_verified','=',1],['is_blocked','=',0],['is_online','=',1]])->get();
+
+    }
 
 }

@@ -14,10 +14,14 @@ class RatesController extends Controller
     {
         $current_user = auth()->user();
         $current_user->rating()->attach($request->get('doctor_id'), ['rate' => $request->get('rate')]);
+        return response()->json(['message'=>'true'], 200);
+
     }
     public function getTotalRate()
     {
         $totalRate = DB::table('rating')->where('doctor_id', request('doctor_id'))->avg('rate');
-        return $totalRate;
+       // return $totalRate;
+        return response()->json(['message'=>'true','data' => $totalRate], 200);
+
     }
 }

@@ -12,7 +12,7 @@ class NotificationController extends Controller
      public function requestDoctor()
      {
          $doctor_id = request('doctor_id');
-         $doctor = User::find('$doctor_id');
+         $doctor = User::find($doctor_id);
          $current_user = auth()->user();
          \PushNotification::app('superDoctorAndroid')
              ->to($doctor->device_token)

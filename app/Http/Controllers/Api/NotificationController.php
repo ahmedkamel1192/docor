@@ -9,12 +9,13 @@ use Illuminate\Http\Request;
 class NotificationController extends Controller
 {
 
-     public function sendNotification()
+     public function requestDoctor()
      {
-         $device_token = request('deviceToken');
-
+         $doctor_id = request('doctor_id');
+         $doctor = User::find('$doctor_id');
+         $current_user = auth()->user();
          \PushNotification::app('superDoctorAndroid')
-             ->to($device_token)
-             ->send('Hello World, i`m a push message');
+             ->to($doctor->device_token)
+             ->send($current_user->name.' need your help');
      }
 }

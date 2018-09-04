@@ -37,9 +37,9 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('allVerifiedAndNonBlockedDoctors','Api\UsersController@allVerifiedAndNonBlockedDoctors');
 
     Route::post('beOnLine','Api\UsersController@beOnLine');
+    Route::post('requestDoctor','Api\NotificationController@requestDoctor');
 
 
 });
-Route::post('notify','Api\NotificationController@sendNotification');
 
 

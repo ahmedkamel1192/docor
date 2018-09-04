@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Bodunde\GoogleGeocoder\Geocoder;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class LocationController extends Controller
 {
@@ -41,13 +42,17 @@ class LocationController extends Controller
             $nearst_doctors=[];
             foreach ($nearest_five_doctors_ids as $doctor_id)
             {
-                $nearst_doctors[] = User::find($doctor_id)->with('category')->get();
+                $totalRate = DB::table('rating')->where('doctor_id', request('doctor_id'))->avg('rate');
+                if (!$totalRate)
+                {
+                   $totalRate = 5; 
+                }
+                $doctor = User::find($doctor_id)->setAttribute('rate', $totalRate);
+    
+                $nearst_doctors[] = $doctor;
             }
 
-           // $id_of_nearst_doctor = array_keys($array_of_doctors, min($array_of_doctors))[0];
-           // $nearst_doctor = User::find($id_of_nearst_doctor);
-
-           // return ($nearst_doctors);
+          
             return response()->json(['message'=>'true','data' => $nearst_doctors], 200);
 
         }else{ return response()->json(['message'=>'false','data'=>'there are no result'], 200);}

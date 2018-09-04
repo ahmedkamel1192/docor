@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 
 //use Davibennun\LaravelPushNotification\PushNotification;
 use Illuminate\Http\Request;
-
+use App\User;
 class NotificationController extends Controller
 {
 

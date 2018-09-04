@@ -51,7 +51,7 @@ class LocationController extends Controller
            // return ($nearst_doctors);
             return response()->json(['message'=>'true','data' => $nearst_doctors], 200);
 
-        }else{ return response()->json(['message'=>'false','data'=>'there are no result'], 404);}
+        }else{ return response()->json(['message'=>'false','data'=>'there are no result'], 200);}
     }
     private function calcDistance($src_lat,$src_lng,$doc_lat,$doc_lng) {
 

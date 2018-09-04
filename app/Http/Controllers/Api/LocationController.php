@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Api;
+
 use App\Http\Controllers\Controller;
-
-
 use Illuminate\Http\Request;
 use Bodunde\GoogleGeocoder\Geocoder;
 use App\User;
@@ -42,7 +41,7 @@ class LocationController extends Controller
             $nearst_doctors=[];
             foreach ($nearest_five_doctors_ids as $doctor_id)
             {
-                $nearst_doctors[] = User::find($doctor_id);
+                $nearst_doctors[] = User::find($doctor_id)->with('category')->get();
             }
 
            // $id_of_nearst_doctor = array_keys($array_of_doctors, min($array_of_doctors))[0];

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+// use App\Category;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -34,6 +34,10 @@ class User extends Authenticatable
     public function has_same_doctor($doctor_id)
     {
         return $this->doctors()->where('doctor_id', $doctor_id)->exists();
+    }
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
     }
 
     public function rating()

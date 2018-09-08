@@ -14,7 +14,6 @@ class NotificationController extends Controller
 
          $doctor_id = request('doctor_id');
          $doctor = User::find($doctor_id);
-         return response()->json(['message'=>'true','data' =>$doctor->device_token ], 200);
 
          $current_user = auth()->user();
          \PushNotification::app('superDoctorAndroid')

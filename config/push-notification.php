@@ -10,7 +10,7 @@ return array(
     ),
     'superDoctorAndroid' => array(
         'environment' =>'development',
-        'apiKey'      =>'AIzaSyCbUVCjJ5jfoLH-BxCvwoisdYL2YRMkTf4',
+        'apiKey'      =>'AIzaSyDIQz2FnSBEo7qaQXmYev_eSZ3pJWW3jHs',
         'service'     =>'gcm'
     )
 

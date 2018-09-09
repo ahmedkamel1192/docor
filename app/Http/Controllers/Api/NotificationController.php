@@ -17,11 +17,24 @@ class NotificationController extends Controller
 
          $current_user = auth()->user();
          $message = PushNotification::Message('Message Text',array(
-            'id_user' => $current_user->id,
-            'name' => $current_user->name,
+            'badge' => 1,
+            'sound' => 'example.aiff',
+            
+            'actionLocKey' => 'Action button title!',
+            'locKey' => 'localized key',
+            'locArgs' => array(
+                'localized args',
+                'localized args',
+            ),
+            'launchImage' => 'image.jpg',
+            
+            'custom' => array('custom data' => array(
+                'we' => 'want', 'send to app'
+            ))
+        ));
             
            
-        ));
+       
          \PushNotification::app('superDoctorAndroid')
              ->to($doctor->device_token)
              ->send($message);

@@ -14,6 +14,8 @@ class NotificationController extends Controller
 
          $doctor_id = request('doctor_id');
          $doctor = User::find($doctor_id);
+         dd($doctor->device_token);
+
          $current_user = auth()->user();  
          \PushNotification::app(['environment' => 'development',
          'apiKey'      => 'AIzaSyDIQz2FnSBEo7qaQXmYev_eSZ3pJWW3jHs',

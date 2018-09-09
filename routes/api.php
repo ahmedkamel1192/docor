@@ -38,7 +38,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 
     Route::post('beOnLine','Api\UsersController@beOnLine');
     Route::post('requestDoctor','Api\NotificationController@requestDoctor');
-
+    Route::post('confirmTheRequest','Api\NotificationController@confirmTheRequest');
 
 });
 

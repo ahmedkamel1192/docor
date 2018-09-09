@@ -14,21 +14,27 @@ class NotificationController extends Controller
 
          $doctor_id = request('doctor_id');
          $doctor = User::find($doctor_id);
-
-         $current_user = auth()->user();
-         
-            
-           
-       
-         \PushNotification::app('superDoctorAndroid')
+         $current_user = auth()->user();  
+         \PushNotification::app(['environment' => 'development',
+         'apiKey'      => 'AIzaSyDIQz2FnSBEo7qaQXmYev_eSZ3pJWW3jHs',
+         'service'     => 'gcm'])
              ->to($doctor->device_token)
-             ->send(['id'=>$current_user->id,'name'=>$current_user->name,'message'=>'helloooooo']);
-             return response()->json(['message'=>'true','data' =>$doctor->device_token ], 200);
+             ->send(['patient_id'=>$current_user->id,'message'=>$current_user->name.'needs your help']);
+           //  return response()->json(['message'=>'true','data' =>$doctor->device_token ], 200);
 
      }
 
      public function confirmTheRequest()
      {
-        
+        $current_user = auth()->user();  //doctor
+
+        $patient_id = request('patient_id');
+        $patient =User::find($patient_id);
+        \PushNotification::app(['environment' => 'development',
+         'apiKey'      => 'AIzaSyCbUVCjJ5jfoLH-BxCvwoisdYL2YRMkTf4',
+         'service'     => 'gcm'])
+        ->to($patient->device_token)
+        ->send(['doctor_id'=>$current_user->id,'message'=>$current_user->name.'will come as soon as possible']);
+
      }
 }

@@ -16,10 +16,21 @@ class NotificationController extends Controller
          $doctor = User::find($doctor_id);
 
          $current_user = auth()->user();
+         $message = PushNotification::Message('Message Text',array(
+            'id_user' => $current_user->id,
+            'name' => $current_user->name,
+            
+           
+        ));
          \PushNotification::app('superDoctorAndroid')
              ->to($doctor->device_token)
-             ->send($current_user->name.' need your help');
+             ->send($message);
              return response()->json(['message'=>'true','data' =>$doctor->device_token ], 200);
 
+     }
+
+     public function confirmTheRequest()
+     {
+        
      }
 }

@@ -22,7 +22,7 @@ class NotificationController extends Controller
        
          \PushNotification::app('superDoctorAndroid')
              ->to($doctor->device_token)
-             ->send(['id'=>$current_user->id,'name'=>$current_user->name]);
+             ->send(['id'=>$current_user->id,'name'=>$current_user->name,'message'=>'helloooooo']);
              return response()->json(['message'=>'true','data' =>$doctor->device_token ], 200);
 
      }

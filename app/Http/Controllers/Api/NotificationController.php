@@ -60,6 +60,7 @@ class NotificationController extends Controller
      {
         $current_user =auth()->user(); //doctor
         $patient_id = request('patient_id');
+        $patient =User::find($patient_id);
         $events = Event::where('patient_id','=', $patient_id)->orderBy('id', 'desc')->get(); 
         $latest_event = $events[0];
         $latest_event->status='mission completed';

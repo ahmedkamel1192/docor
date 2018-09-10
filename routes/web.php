@@ -23,7 +23,7 @@ Route::group(['middleware' => ['checkIfAdmin']], function () {
     Route::get('/categories', 'CategoriesController@index');
     Route::get('/doctors', 'DoctorsController@index');
     Route::get('/users', 'UsersController@index');
-    Route::get('/Events', 'EventController@index');
+    Route::get('/events', 'EventController@index');
     Route::get('/verify/{doctor_id}', 'DoctorsController@verify');
     Route::delete('/delete/{id}', 'UsersController@destroy');
     Route::post('/block/{id}', 'UsersController@block');

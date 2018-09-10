@@ -25,7 +25,7 @@ class EventsDataTable extends DataTable
      * @param \App\User $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model)
+    public function query()
     {
         return Event::all();
     }
@@ -61,10 +61,37 @@ class EventsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'id',
-            'add your columns',
-            'created_at',
-            'updated_at'
+            [
+                'name' => 'id',
+                'data' => 'id',
+                'title' => 'Event id'
+            ],
+            [
+                'name' => 'patient_name',
+                'data' => 'patient_name',
+                'title' => 'Patient Name'
+            ],
+            [
+                'name' => 'doctor_name',
+                'data' => 'doctor_name',
+                'title' => 'Doctor_name'
+            ],
+            [
+                'name' => 'patient_phone',
+                'data' => 'patient_phone',
+                'title' => 'Patient Phone'
+            ],
+            [
+                'name' => 'doctor_phone',
+                'data' => 'doctor_phone',
+                'title' => 'Doctor Phone'
+            ],
+            [
+                'name' => 'status',
+                'data' => 'status',
+                'title' => 'Status'
+            ],
+
         ];
     }
 

@@ -222,6 +222,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li class="active"><a href="/doctors"><span>Manage Doctors</span></a></li>
                 <li><a href="/users"><span>Manager Users</span></a></li>
                 <li><a href="/categories"><span>Manager Categories</span></a></li>
+                <li><a href="/events"><span>All Events</span></a></li>
 
                 <li class="treeview">
                     <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
@@ -247,6 +248,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 {echo "Manage Users Page";}
                 else if( $_SERVER["REQUEST_URI"] == "/categories")
                 {echo "Manage Categories Page";}
+                else if( $_SERVER["REQUEST_URI"] == "/events")
+                {echo "Events";}
                 ?>
     <small>Optional description</small>
             </h1>

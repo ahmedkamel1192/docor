@@ -22,6 +22,19 @@ class ADDToFavouriteController extends Controller
         }else
              return response()->json(['messgae'=>'false']);
     }
+    public function remove_from_favourite(Request $request)
+    {
+
+          $current_user = auth()->user();
+        //  return $current_user;
+
+         
+        
+            $current_user->doctors()->detach($request->get('doctor_id'));   // add friend
+
+            return response()->json(['message'=>'true'],200);
+       
+    }
     public function favourites()
     {
         $current_user = auth()->user();

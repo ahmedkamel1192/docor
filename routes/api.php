@@ -32,6 +32,7 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::get('categories','Api\CategoriesController@index');
     Route::get('categories/{id}','Api\CategoriesController@getDoctorsByCategory');
     Route::post('updatelocation','Api\LocationController@updateLocation');
+    Route::post('getDoctorLocation','Api\LocationController@getDoctorLocation');
     Route::post('getNearestDoctorsWithCategory','Api\LocationController@getNearestDoctorsWithCategory');
     Route::post('Rate','Api\RatesController@addRate');
     Route::post('getTotalRate','Api\RatesController@getTotalRate');

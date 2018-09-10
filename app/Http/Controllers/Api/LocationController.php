@@ -74,4 +74,10 @@ class LocationController extends Controller
         return ($distance);
 
     }
+    public function getDoctorLocation()
+    {
+        $doctor = User::find(request('doctor_id'));
+        return response()->json(['message'=>'true','lat' => $doctor->latitude,'lng'=>$doctor->longitude], 200);
+
+     }
 }

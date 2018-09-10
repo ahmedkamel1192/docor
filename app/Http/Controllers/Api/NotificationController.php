@@ -68,6 +68,6 @@ class NotificationController extends Controller
         'apiKey'      => 'AIzaSyCbUVCjJ5jfoLH-BxCvwoisdYL2YRMkTf4',
         'service'     => 'gcm'])
        ->to($patient->device_token)
-       ->send(['doctor_id'=>$current_user->id,'confirmation'=>true,'message'=>$current_user->name.' will come as soon as possible']);
+       ->send(['doctor_id'=>$current_user->id,'done'=>true,'message'=>$current_user->name.' did his job , please rate him']);
      }
 }

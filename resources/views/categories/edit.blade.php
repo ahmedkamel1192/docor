@@ -14,7 +14,7 @@
                             {{method_field('PUT')}}
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="no_of_room" class="col-md-4 control-label">Number Of Rooms</label>
+                                <label for="no_of_room" class="col-md-4 control-label">Category Name</label>
 
                                 <div class="col-md-6">
                                     <input id="no_of_room" type="text" class="form-control" name="name"

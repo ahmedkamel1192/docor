@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Davibennun\LaravelPushNotification\PushNotification;
 use Illuminate\Http\Request;
 use App\User;
+use App\Event;
 class NotificationController extends Controller
 {
 
@@ -14,13 +15,20 @@ class NotificationController extends Controller
 
          $doctor_id = request('doctor_id');
          $doctor = User::find($doctor_id);
+         $current_user = auth()->user(); //patient
+         $event = new Event(); 
+         $event->patient_name=$current_user->name;
+         $event->patient_phone=$current_user->phone;
+         $event->order_date=\Carbon::now();
+         $event->status='waiting respond';
+         $event->save();
 
-         $current_user = auth()->user();  
+
          \PushNotification::app(['environment' => 'development',
          'apiKey'      => 'AIzaSyDIQz2FnSBEo7qaQXmYev_eSZ3pJWW3jHs',
          'service'     => 'gcm'])
              ->to($doctor->device_token)
-             ->send(['patient_id'=>$current_user->id,'message'=>$current_user->name.'needs your help']);
+             ->send(['patient_id'=>$current_user->id,'patient_name'=>$current_user->name,'patient_id'=>$current_user->phone,'message'=>$current_user->name.' needs your help']);
            //  return response()->json(['message'=>'true','data' =>$doctor->device_token ], 200);
 
      }
@@ -28,8 +36,12 @@ class NotificationController extends Controller
      public function confirmTheRequest()
      {
         $current_user = auth()->user();  //doctor
-
         $patient_id = request('patient_id');
+        $event = Event::where('patient_id','=', $patient_id)->orderBy('id', 'desc')->first();
+        $event->doctor_name=$current_user->name;
+        $event->doctor_phone=$current_user->phone;
+        $event->status='doctor on his way';
+        $event->save();
         $patient =User::find($patient_id);
         \PushNotification::app(['environment' => 'development',
          'apiKey'      => 'AIzaSyCbUVCjJ5jfoLH-BxCvwoisdYL2YRMkTf4',

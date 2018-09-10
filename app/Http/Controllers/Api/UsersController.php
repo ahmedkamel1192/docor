@@ -24,7 +24,7 @@ class UsersController extends Controller
         if($current_user->is_online == false)
         $current_user->is_online= true;
         else
-        $current_user->is_lone = false ;
+        $current_user->is_online = false ;
         $current_user->save();
     }
 

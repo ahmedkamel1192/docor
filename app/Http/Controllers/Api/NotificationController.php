@@ -42,7 +42,7 @@ class NotificationController extends Controller
         $current_user = auth()->user();  //doctor
         $patient_id = request('patient_id');
         $event = Event::where('patient_id','=', $patient_id)->orderBy('id', 'desc')->get();
-        dd($event->patient_name);
+        dd($event[0]->patient_name);
         // $event->doctor_name=$current_user->name;
         // $event->doctor_phone=$current_user->phone;
         // $event->status='doctor on his way';

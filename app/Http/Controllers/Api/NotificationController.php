@@ -42,18 +42,18 @@ class NotificationController extends Controller
      {
         $current_user = auth()->user();  //doctor
         $patient_id = request('patient_id');
-        $event = Event::where('patient_id','=', $patient_id)->orderBy('id', 'desc')->get();
-        dd($event[0]->patient_name,$event[0]->id);
-        // $event->doctor_name=$current_user->name;
-        // $event->doctor_phone=$current_user->phone;
-        // $event->status='doctor on his way';
-        // $event->save();
-        // $patient =User::find($patient_id);
-        // \PushNotification::app(['environment' => 'development',
-        //  'apiKey'      => 'AIzaSyCbUVCjJ5jfoLH-BxCvwoisdYL2YRMkTf4',
-        //  'service'     => 'gcm'])
-        // ->to($patient->device_token)
-        // ->send(['doctor_id'=>$current_user->id,'confirmation'=>true,'message'=>$current_user->name.' will come as soon as possible']);
+        $events = Event::where('patient_id','=', $patient_id)->orderBy('id', 'desc')->get(); 
+       $latest_event = $events[0];
+        $latest_event->doctor_name=$current_user->name;
+        $latest_event->doctor_phone=$current_user->phone;
+        $latest_event->status='doctor on his way';
+        $latest_event->save();
+        $patient =User::find($patient_id);
+        \PushNotification::app(['environment' => 'development',
+         'apiKey'      => 'AIzaSyCbUVCjJ5jfoLH-BxCvwoisdYL2YRMkTf4',
+         'service'     => 'gcm'])
+        ->to($patient->device_token)
+        ->send(['doctor_id'=>$current_user->id,'confirmation'=>true,'message'=>$current_user->name.' will come as soon as possible']);
 
      }
 }

@@ -23,7 +23,7 @@ class NotificationController extends Controller
          $event->patient_phone=$current_user->phone;
          $event->src_lat=request('src_lat');
          $event->src_long=request('src_lng');
-         $event->order_date=\Carbon::now();
+        // $event->order_date=\Carbon::now();
          $event->status='waiting respond';
          $event->save();
 

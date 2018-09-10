@@ -26,7 +26,7 @@ class CreateEventsTable extends Migration
             $table->string('status')->nullable();
 
 
-           $table->date('order_date');
+           $table->date('order_date')->nullable();
            $table->timestamps();
 
         });

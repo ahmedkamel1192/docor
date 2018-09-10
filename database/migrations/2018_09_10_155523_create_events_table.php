@@ -27,6 +27,8 @@ class CreateEventsTable extends Migration
 
 
            $table->date('order_date');
+           $table->timestamps();
+
         });
     }
 

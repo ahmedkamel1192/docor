@@ -2,10 +2,10 @@
 
 namespace App\DataTables;
 
-use App\User;
+use App\Event;
 use Yajra\DataTables\Services\DataTable;
 
-class UsersDataTable extends DataTable
+class EventsDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -16,7 +16,7 @@ class UsersDataTable extends DataTable
     public function dataTable($query)
     {
         return datatables($query)
-            ->addColumn('action', 'Users.action');
+            ->addColumn('action', 'events.action');
     }
 
     /**
@@ -27,7 +27,7 @@ class UsersDataTable extends DataTable
      */
     public function query(User $model)
     {
-        return User::where('type','=','user');
+        return Event::all();
     }
 
     /**
@@ -53,7 +53,6 @@ class UsersDataTable extends DataTable
             ]);
     }
 
-
     /**
      * Get columns.
      *
@@ -61,39 +60,11 @@ class UsersDataTable extends DataTable
      */
     protected function getColumns()
     {
-
         return [
-            [
-                'name' => 'id',
-                'data' => 'id',
-                'title' => 'ID'
-            ],
-            [
-                'name' => 'email',
-                'data' => 'email',
-                'title' => 'Email'
-            ],
-            [
-                'name' => 'name',
-                'data' => 'name',
-                'title' => 'Name'
-            ],
-            [
-                'name' => 'phone',
-                'data' => 'phone',
-                'title' => 'PHONE'
-            ],
-            [
-                'name' => 'created_at',
-                'data' => 'created_at',
-                'title' => 'Created_At'
-            ],
-            [
-                'name' => 'action',
-                'data' => 'action',
-                'title' => 'Actions'
-            ],
-
+            'id',
+            'add your columns',
+            'created_at',
+            'updated_at'
         ];
     }
 
@@ -104,6 +75,6 @@ class UsersDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Users_' . date('YmdHis');
+        return 'Events_' . date('YmdHis');
     }
 }

@@ -27,6 +27,12 @@ Route::group(['middleware' => ['checkIfAdmin']], function () {
     Route::get('/verify/{doctor_id}', 'DoctorsController@verify');
     Route::delete('/delete/{id}', 'UsersController@destroy');
     Route::post('/block/{id}', 'UsersController@block');
+    Route::get('/categories/create', 'CategoriesController@create');
+    Route::post('/categories', 'CategoriesController@store');
+    Route::get('/categories/{id}/edit', 'CategoriesController@edit');
+    Route::put('/categories/{id}', 'CategoriesController@update');
+    Route::delete('/categories/delete/{id}', 'CategoriesController@destroy');
+
 
 
 

@@ -43,7 +43,7 @@ class NotificationController extends Controller
         $current_user = auth()->user();  //doctor
         $patient_id = request('patient_id');
         $events = Event::where('patient_id','=', $patient_id)->orderBy('id', 'desc')->get(); 
-       $latest_event = $events[0];
+        $latest_event = $events[0];
         $latest_event->doctor_name=$current_user->name;
         $latest_event->doctor_phone=$current_user->phone;
         $latest_event->status='doctor on his way';
@@ -55,5 +55,19 @@ class NotificationController extends Controller
         ->to($patient->device_token)
         ->send(['doctor_id'=>$current_user->id,'confirmation'=>true,'message'=>$current_user->name.' will come as soon as possible']);
 
+     }
+     public function endExamine()
+     {
+        $current_user =auth()->user(); //doctor
+        $patient_id = request('patient_id');
+        $events = Event::where('patient_id','=', $patient_id)->orderBy('id', 'desc')->get(); 
+        $latest_event = $events[0];
+        $latest_event->status='mission completed';
+        $latest_event->save();
+        \PushNotification::app(['environment' => 'development',
+        'apiKey'      => 'AIzaSyCbUVCjJ5jfoLH-BxCvwoisdYL2YRMkTf4',
+        'service'     => 'gcm'])
+       ->to($patient->device_token)
+       ->send(['doctor_id'=>$current_user->id,'confirmation'=>true,'message'=>$current_user->name.' will come as soon as possible']);
      }
 }

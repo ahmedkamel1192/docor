@@ -23,4 +23,5 @@ class CategoriesController extends Controller
         $doctors=$category->users->where('type','=','doctor');
         return response()->json(['message'=>$doctors]);
     }
+  
 }

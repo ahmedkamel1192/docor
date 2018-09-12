@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 
 class ADDToFavouriteController extends Controller
@@ -39,8 +40,22 @@ class ADDToFavouriteController extends Controller
     {
         $current_user = auth()->user();
        $favourites =  $current_user->doctors;
-       return response()->json(['message'=>'true','data' => $favourites], 200);
+       $favourites_arr=[];
+            foreach ($favourites as $fav_doctor)
+            {
+                $totalRate = DB::table('rating')->where('doctor_id', $fav_doctor->id)->avg('rate');
+                if (!$totalRate)
+                {
+                   $totalRate = 5; 
+                }
+                $doctor = User::find($fav_doctor->id)->setAttribute('rate', $totalRate);
+    
+                $favourites_arr[] = $doctor;
+            }
 
+          
+            return response()->json(['message'=>'true','data' => $favourites_arr], 200);
+       
 
     }
 

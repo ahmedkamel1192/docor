@@ -42,7 +42,7 @@ class LocationController extends Controller
             $nearst_doctors=[];
             foreach ($nearest_five_doctors_ids as $doctor_id)
             {
-                $totalRate = DB::table('rating')->where('doctor_id', request('doctor_id'))->avg('rate');
+                $totalRate = DB::table('rating')->where('doctor_id', $doctor_id)->avg('rate');
                 if (!$totalRate)
                 {
                    $totalRate = 5; 
@@ -55,7 +55,7 @@ class LocationController extends Controller
           
             return response()->json(['message'=>'true','data' => $nearst_doctors], 200);
 
-        }else{ return response()->json(['message'=>'false','data'=>'there are no result'], 200);}
+        }else{ return response()->json(['message'=>'false','error'=>'there are no result'], 200);}
     }
     private function calcDistance($src_lat,$src_lng,$doc_lat,$doc_lng) {
 

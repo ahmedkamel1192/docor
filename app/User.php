@@ -51,5 +51,9 @@ class User extends Authenticatable
         return User::where([['type','=','doctor'],['category_id','=',request('category_id')],['is_verified','=',1],['is_blocked','=',0],['is_online','=',1]])->get();
 
     }
+    static function checkIfUserHasSameType($email,$type)
+    {
+       return User::where([['email','=',$email],['type','=',$type]])->count();
+    }
 
 }

@@ -29,7 +29,6 @@ Route::group(['middleware' => 'jwt.auth'], function () {
 
     Route::get('favouriteDoctors','Api\ADDToFavouriteController@favourites');
 
-    Route::get('categories','Api\CategoriesController@index');
     Route::get('categories/{id}','Api\CategoriesController@getDoctorsByCategory');
     Route::post('updatelocation','Api\LocationController@updateLocation');
     Route::post('getDoctorLocation','Api\LocationController@getDoctorLocation');
@@ -46,5 +45,6 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('endExamine','Api\NotificationController@endExamine');
 
 });
+Route::get('categories','Api\CategoriesController@index');
 
 

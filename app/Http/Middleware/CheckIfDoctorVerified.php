@@ -2,9 +2,10 @@
 
 namespace App\Http\Middleware;
 use Auth;
+
 use Closure;
 
-class CheckIfBlocked
+class CheckIfDoctorVerified
 {
     /**
      * Handle an incoming request.
@@ -17,14 +18,15 @@ class CheckIfBlocked
     {
         if (Auth::check())
         {
-            $is_blocked = Auth::user()->is_blocked;
-            if ($is_blocked)
+            $type = Auth::user()->type;
+            $is_verified =Auth::user()->is_verified;
+            if (($is_verified&&$type=='doctor') || $type=='user')
             {
-                Auth::logout();
-                return response()->json(['error' => 'you are blocked'], 401);
+                return $next($request);
 
             }
-            return $next($request);
+            Auth::logout();
+             return response()->json(['error' => 'you are not verified'], 401);
         }
         return response()->json(['error' => 'authentication error'], 401);
 

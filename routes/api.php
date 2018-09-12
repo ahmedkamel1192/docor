@@ -23,7 +23,7 @@ Route::post('user/register/{type}', 'Api\APIRegisterController@register');
 //Route::post('doctor/register', 'APIRegisterController@register');
 Route::post('user/login', 'Api\APILoginController@login');
 
-Route::group(['middleware' => 'jwt.auth'], function () {
+Route::group(['middleware' => ['jwt.auth','CheckIfBlocked']], function () {
     Route::post('addToFavourite','Api\ADDToFavouriteController@add_to_favourite');
     Route::post('removeFromFavourite','Api\ADDToFavouriteController@remove_from_favourite');
 
@@ -45,6 +45,6 @@ Route::group(['middleware' => 'jwt.auth'], function () {
     Route::post('endExamine','Api\NotificationController@endExamine');
 
 });
-Route::get('categories','Api\CategoriesController@index');
+    Route::get('categories','Api\CategoriesController@index');
 
 

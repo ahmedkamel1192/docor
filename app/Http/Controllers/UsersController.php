@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DataTables\UsersDataTable;
 use App\User;
+use Auth;
+
 class UsersController extends Controller
 {
     public function index()
@@ -38,7 +40,13 @@ class UsersController extends Controller
             return  response()->json(['errors' => "you don't have access" ]);
         }
     }
-    
+    public function signout()
+    {
+        # code...
+        Auth::logout();
+        return redirect('/login');
+
+    }
 
 
     

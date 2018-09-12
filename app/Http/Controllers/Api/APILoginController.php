@@ -23,10 +23,10 @@ class APILoginController extends Controller
         $credentials = $request->only('email', 'password');
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
+                return response()->json(['error' => 'invalid_credentials'], 200);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return response()->json(['error' => 'could_not_create_token'], 200);
         }
         //if($request->type ='user' && )
         $email=$request->email;
@@ -36,7 +36,7 @@ class APILoginController extends Controller
         return response()->json(compact('token'));
        }
        else{
-        return response()->json(['error' => 'invalid_credentials'], 401);
+        return response()->json(['error' => 'invalid_credentials'], 200);
     }
     }
 }

@@ -26,9 +26,9 @@ class CheckIfDoctorVerified
 
             }
             Auth::logout();
-             return response()->json(['error' => 'you are not verified'], 401);
+             return response()->json(['error' => 'you are not verified'], 200);
         }
-        return response()->json(['error' => 'authentication error'], 401);
+        return response()->json(['error' => 'authentication error'], 200);
 
     }
 }

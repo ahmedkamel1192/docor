@@ -14,7 +14,8 @@
 
 Route::get('/', function () {
 
-    return view('welcome');
+    return redirect('/events');
+
 });
 
 Auth::routes();
@@ -32,6 +33,7 @@ Route::group(['middleware' => ['checkIfAdmin']], function () {
     Route::get('/categories/{id}/edit', 'CategoriesController@edit');
     Route::put('/categories/{id}', 'CategoriesController@update');
     Route::delete('/categories/delete/{id}', 'CategoriesController@destroy');
+    Route::get('/signout', 'UsersController@signout');
 
 
 

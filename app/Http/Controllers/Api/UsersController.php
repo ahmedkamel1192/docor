@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
-
 class UsersController extends Controller
 {
 
@@ -36,5 +35,6 @@ class UsersController extends Controller
         $all_doctors = User::allVerifiedAndNonBlockedDoctors();
         return response()->json(['message'=>'true','data' => $all_doctors], 200);
      }
+    
    
 }

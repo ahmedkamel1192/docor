@@ -21,12 +21,12 @@ class CheckIfBlocked
             if ($is_blocked)
             {
                 Auth::logout();
-                return response()->json(['error' => 'you are blocked'], 401);
+                return response()->json(['error' => 'you are blocked'], 200);
 
             }
             return $next($request);
         }
-        return response()->json(['error' => 'authentication error'], 401);
+        return response()->json(['error' => 'authentication error'], 200);
 
     }
 }

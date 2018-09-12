@@ -24,7 +24,8 @@ class LocationController extends Controller
     public function getNearestDoctorsWithCategory()
     {
 
-        $doctors = User::allVerifiedAndNonBlockedDoctors();
+        $doctors = User::allVerifiedAndNonBlockedDoctors(request('category_id'));
+     
         $array_of_doctors=[];
         if( $doctors->count() >0) {
             foreach ($doctors as $doctor) {
@@ -32,6 +33,7 @@ class LocationController extends Controller
             }
             //dd($array_of_doctors);
             asort($array_of_doctors);
+           
            // print_r($array_of_doctors);
           //  print_r(array_keys($array_of_doctors));
             $ids_of_nearest_doctors = array_keys($array_of_doctors);

@@ -45,10 +45,10 @@ class User extends Authenticatable
         return $this->belongsToMany('\App\User', 'rating', 'user_id', 'doctor_id')->withPivot('rate');
 
     }
-    static function allVerifiedAndNonBlockedDoctors()
+    static function allVerifiedAndNonBlockedDoctors($category_id)
     {
         # code...
-        return User::where([['type','=','doctor'],['category_id','=',request('category_id')],['is_verified','=',1],['is_blocked','=',0],['is_online','=',1]])->get();
+        return User::where([['type','=','doctor'],['category_id','=',$category_id],['is_verified','=',1],['is_blocked','=',0],['is_online','=',1]])->get();
 
     }
     static function checkIfUserHasSameType($email,$type)

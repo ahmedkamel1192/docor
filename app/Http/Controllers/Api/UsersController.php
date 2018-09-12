@@ -32,7 +32,7 @@ class UsersController extends Controller
 
     public function allVerifiedAndNonBlockedDoctors()
     {
-        $all_doctors = User::allVerifiedAndNonBlockedDoctors();
+        $all_doctors = User::allVerifiedAndNonBlockedDoctors(request('category_id'));
         return response()->json(['message'=>'true','data' => $all_doctors], 200);
      }
     

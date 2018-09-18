@@ -41,6 +41,8 @@ class NotificationController extends Controller
      public function confirmTheRequest()
      {
         $current_user = auth()->user();  //doctor
+        $current_user->is_busy=true;
+        $current_user->save();
         $patient_id = request('patient_id');
         $events = Event::where('patient_id','=', $patient_id)->orderBy('id', 'desc')->get(); 
         $latest_event = $events[0];
@@ -59,6 +61,8 @@ class NotificationController extends Controller
      public function endExamine()
      {
         $current_user =auth()->user(); //doctor
+        $current_user->is_busy=false;
+        $current_user->save();
         $patient_id = request('patient_id');
         $patient =User::find($patient_id);
         $events = Event::where('patient_id','=', $patient_id)->orderBy('id', 'desc')->get(); 

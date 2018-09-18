@@ -43,6 +43,9 @@ Route::group(['middleware' => ['jwt.auth','CheckIfBlocked','CheckIfDoctorVerifie
     Route::post('requestDoctor','Api\NotificationController@requestDoctor');
     Route::post('confirmTheRequest','Api\NotificationController@confirmTheRequest');
     Route::post('endExamine','Api\NotificationController@endExamine');
+    Route::get('endExamine','Api\NotificationController@endExamine');
+    Route::get('myEvents','Api\UsersController@allComletedEvents');
+
 
 });
     Route::get('categories','Api\CategoriesController@index');

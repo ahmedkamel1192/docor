@@ -48,7 +48,7 @@ class User extends Authenticatable
     static function allVerifiedAndNonBlockedDoctors($category_id)
     {
         # code...
-        return User::where([['type','=','doctor'],['category_id','=',$category_id],['is_verified','=',1],['is_blocked','=',0],['is_online','=',1]])->get();
+        return User::where([['type','=','doctor'],['category_id','=',$category_id],['is_verified','=',1],['is_blocked','=',0],['is_online','=',1],['is_busy','=',0]])->get();
 
     }
     static function checkIfUserHasSameType($email,$type)

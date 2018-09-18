@@ -35,6 +35,18 @@ class UsersController extends Controller
         $all_doctors = User::allVerifiedAndNonBlockedDoctors(request('category_id'));
         return response()->json(['message'=>'true','data' => $all_doctors], 200);
      }
-    
+     public function allComletedEvents()
+     {
+       $current_user=auth()->user();
+       $id=$current_user->id;
+       if($current_user->type == doctor)
+       $comleted_events=Event::where([['doctor_id','=',$id],['status','=','mission completed']])->get();
+       else{
+        $comleted_events=Event::where([['patient_id','=',$id],['status','=','mission completed']])->get();
+          }
+       return response()->json(['message'=>'true','data' => $comleted_events], 200);
+
+     }
+   
    
 }

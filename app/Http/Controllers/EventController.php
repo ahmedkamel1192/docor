@@ -12,4 +12,5 @@ class EventController extends Controller
         $doctors = new EventsDataTable();
         return $doctors->render('Admin.index');
     }
+    
 }

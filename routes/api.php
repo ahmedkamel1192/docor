@@ -49,5 +49,6 @@ Route::group(['middleware' => ['jwt.auth','CheckIfBlocked','CheckIfDoctorVerifie
 
 });
     Route::get('categories','Api\CategoriesController@index');
+    Route::post('sendText','feedbackController@store');
 
 

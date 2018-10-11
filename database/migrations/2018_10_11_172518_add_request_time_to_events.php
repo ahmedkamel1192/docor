@@ -14,9 +14,9 @@ class AddRequestTimeToEvents extends Migration
     public function up()
     {
         Schema::table('events', function($table) {
-            $table->string('request_time');
-            $table->string('arrive_time');
-            $table->string('accept_time');
+            $table->string('request_time')->nullable();
+            $table->string('arrive_time')->nullable();
+            $table->string('accept_time')->nullable();
         });
     }
 

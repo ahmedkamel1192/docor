@@ -25,16 +25,17 @@ class NotificationController extends Controller
          $event->src_lat=request('src_lat');
          $event->src_long=request('src_lng');
          $event->order_date=date("Y-m-d H:i:s");
+         $event->request_time=date("Y-m-d H:i:s");
          $event->status='waiting respond';
          $event->save();
 
 
-         \PushNotification::app(['environment' => 'development',
-         'apiKey'      => 'AIzaSyDIQz2FnSBEo7qaQXmYev_eSZ3pJWW3jHs',
-         'service'     => 'gcm'])
-             ->to($doctor->device_token)
-             ->send(['patient_id'=>$current_user->id,'patient_name'=>$current_user->name,'src_lat'=>request('src_lat'),'src_lng'=>request('src_lng'),'patient_phone'=>$current_user->phone,'message'=>$current_user->name.' needs your help']);
-           //  return response()->json(['message'=>'true','data' =>$doctor->device_token ], 200);
+        //  \PushNotification::app(['environment' => 'development',
+        //  'apiKey'      => 'AIzaSyDIQz2FnSBEo7qaQXmYev_eSZ3pJWW3jHs',
+        //  'service'     => 'gcm'])
+        //      ->to($doctor->device_token)
+        //      ->send(['patient_id'=>$current_user->id,'patient_name'=>$current_user->name,'src_lat'=>request('src_lat'),'src_lng'=>request('src_lng'),'patient_phone'=>$current_user->phone,'message'=>$current_user->name.' needs your help']);
+        //    //  return response()->json(['message'=>'true','data' =>$doctor->device_token ], 200);
 
      }
 
@@ -49,6 +50,7 @@ class NotificationController extends Controller
         $latest_event->doctor_name=$current_user->name;
         $latest_event->doctor_phone=$current_user->phone;
         $latest_event->status='doctor on his way';
+        $latest_event->accept_time=date("Y-m-d H:i:s");
         $latest_event->save();
         $patient =User::find($patient_id);
         \PushNotification::app(['environment' => 'development',
@@ -68,6 +70,7 @@ class NotificationController extends Controller
         $events = Event::where('patient_id','=', $patient_id)->orderBy('id', 'desc')->get(); 
         $latest_event = $events[0];
         $latest_event->status='mission completed';
+        $latest_event->arrive_time=date("Y-m-d H:i:s");
         $latest_event->save();
         \PushNotification::app(['environment' => 'development',
         'apiKey'      => 'AIzaSyCbUVCjJ5jfoLH-BxCvwoisdYL2YRMkTf4',

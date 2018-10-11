@@ -91,6 +91,21 @@ class EventsDataTable extends DataTable
                 'data' => 'status',
                 'title' => 'Status'
             ],
+            [
+                'name' => 'arrive_time',
+                'data' => 'arrive_time',
+                'title' => 'arrive_time'
+            ],
+            [
+                'name' => 'request_time',
+                'data' => 'request_time',
+                'title' => 'request_time'
+            ],
+            [
+                'name' => 'accept_time',
+                'data' => 'accept_time',
+                'title' => 'accept_time'
+            ]
 
         ];
     }

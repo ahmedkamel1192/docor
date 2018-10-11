@@ -49,8 +49,10 @@ class ADDToFavouriteController extends Controller
                    $totalRate = 5; 
                 }
                 $doctor = User::find($fav_doctor->id)->setAttribute('rate', $totalRate);
-    
-                $favourites_arr[] = $doctor;
+                if(!$doctor->is_busy && $doctor->is_online){
+                    $favourites_arr[] = $doctor;
+                }
+               
             }
 
           

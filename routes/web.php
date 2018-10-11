@@ -25,6 +25,7 @@ Route::group(['middleware' => ['checkIfAdmin']], function () {
     Route::get('/doctors', 'DoctorsController@index');
     Route::get('/users', 'UsersController@index');
     Route::get('/events', 'EventController@index');
+    Route::get('/feedback', 'feedbackController@index');
     Route::get('/verify/{doctor_id}', 'DoctorsController@verify');
     Route::delete('/delete/{id}', 'UsersController@destroy');
     Route::post('/block/{id}', 'UsersController@block');

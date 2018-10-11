@@ -163,6 +163,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <li><a href="/users"><span>Manager Users</span></a></li>
                 <li><a href="/categories"><span>Manager Categories</span></a></li>
                 <li><a href="/events"><span>All Events</span></a></li>
+                <li><a href="/feedback"><span>FeedBack</span></a></li>
 
                 <li class="treeview">
                     <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>

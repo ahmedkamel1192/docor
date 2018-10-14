@@ -30,12 +30,12 @@ class NotificationController extends Controller
          $event->save();
 
 
-        //  \PushNotification::app(['environment' => 'development',
-        //  'apiKey'      => 'AIzaSyDIQz2FnSBEo7qaQXmYev_eSZ3pJWW3jHs',
-        //  'service'     => 'gcm'])
-        //      ->to($doctor->device_token)
-        //      ->send(['patient_id'=>$current_user->id,'patient_name'=>$current_user->name,'src_lat'=>request('src_lat'),'src_lng'=>request('src_lng'),'patient_phone'=>$current_user->phone,'message'=>$current_user->name.' needs your help']);
-        //    //  return response()->json(['message'=>'true','data' =>$doctor->device_token ], 200);
+         \PushNotification::app(['environment' => 'development',
+         'apiKey'      => 'AIzaSyDIQz2FnSBEo7qaQXmYev_eSZ3pJWW3jHs',
+         'service'     => 'gcm'])
+             ->to($doctor->device_token)
+             ->send(['patient_id'=>$current_user->id,'patient_name'=>$current_user->name,'src_lat'=>request('src_lat'),'src_lng'=>request('src_lng'),'patient_phone'=>$current_user->phone,'message'=>$current_user->name.' needs your help']);
+           //  return response()->json(['message'=>'true','data' =>$doctor->device_token ], 200);
 
      }
 
